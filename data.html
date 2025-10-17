@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Таксопарк "Быстрый" — Данные автопарка</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body id="top">
+  <header>
+    <h1 align="center">Данные автопарка</h1>
+    
+<nav>
+  <ul>
+    <li><a href="index.html">Главная</a></li>
+    <li><a href="car.html">Автомобиль дня</a></li>
+    <li><a href="data.html">Данные автопарка</a></li>
+    <li><a href="mailto:info@taxi.example">Связаться</a></li>
+  </ul>
+</nav>
+
+    <hr>
+  </header>
+
+  <section>
+    <h2>Настройки отображения</h2>
+    <form action="data.html" method="get">
+      <fieldset>
+        <legend>Сортировка</legend>
+        <label for="sort">Поле:</label>
+        <select name="sort" id="sort">
+          <option value="id">ID</option>
+          <option value="model">Модель</option>
+          <option value="year">Год</option>
+          <option value="mileage">Пробег</option>
+          <option value="rating">Рейтинг</option>
+          <option value="trips">Поездки</option>
+        </select>
+        <label><input type="radio" name="order" value="asc" checked> По возрастанию</label>
+        <label><input type="radio" name="order" value="desc"> По убыванию</label>
+        <input type="submit" value="Применить">
+      </fieldset>
+
+      <fieldset>
+        <legend>Фильтры</legend>
+        <label for="status">Статус:</label>
+        <select name="status" id="status">
+          <option value="">Любой</option>
+          <option>Свободен</option>
+          <option>На заказе</option>
+          <option>На обслуживании</option>
+        </select>
+
+        <label for="year_min">Год от:</label>
+        <input type="number" id="year_min" name="year_min" min="2010" max="2025" value="2016">
+        <label for="year_max">до:</label>
+        <input type="number" id="year_max" name="year_max" min="2010" max="2025" value="2024">
+
+        <label for="model">Модель содержит:</label>
+        <input type="text" id="model" name="model" placeholder="например, Toyota">
+
+        <details>
+          <summary>Дополнительные параметры</summary>
+          <label><input type="checkbox" name="only_electric"> Только электромобили</label>
+          <label for="rating_min">Рейтинг минимум:</label>
+          <input type="number" id="rating_min" name="rating_min" min="0" max="5" step="0.1" value="4.0">
+        </details>
+
+        <input type="submit" value="Отфильтровать">
+        <input type="reset" value="Сбросить">
+      </fieldset>
+
+      <fieldset>
+        <legend>Настройки графика</legend>
+        <label for="x">Ось X:</label>
+        <select name="x" id="x">
+          <option value="year">Год</option>
+          <option value="mileage">Пробег</option>
+          <option value="trips">Поездки</option>
+        </select>
+        <label for="y">Ось Y:</label>
+        <select name="y" id="y">
+          <option value="rating">Рейтинг</option>
+          <option value="trips">Поездки</option>
+        </select>
+        <label for="group">Группировка:</label>
+        <select id="group" name="group">
+          <option value="fuel">Тип топлива</option>
+          <option value="class">Класс</option>
+          <option value="status">Статус</option>
+        </select>
+        <input type="submit" value="Построить">
+      </fieldset>
+    </form>
+  </section>
+
+  <section>
+    <h2>Таблица автопарка (60 строк)</h2>
+    <table border="1" cellpadding="6" width="100%">
+      <thead>
+        <tr bgcolor="#f8f8f8">
+          <th>ID</th>
+          <th>Модель</th>
+          <th>Год</th>
+          <th>Пробег, км</th>
+          <th>Статус</th>
+          <th>Водитель</th>
+          <th>Рейтинг</th>
+          <th>Поездки</th>
+          <th>Топливо</th>
+          <th>Класс</th>
+          <th>Номер</th>
+          <th>Последнее ТО</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+      <tr>
+        <td>1</td>
+        <td>Hyundai Ioniq</td>
+        <td>2016</td>
+        <td>174194</td>
+        <td>Свободен</td>
+        <td>Сидоров И.</td>
+        <td>4.5</td>
+        <td>3348</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>T532AA-77</td>
+        <td>2023-04-06</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Kia Ceed</td>
+        <td>2019</td>
+        <td>294951</td>
+        <td>На заказе</td>
+        <td>Михайлов С.</td>
+        <td>4.6</td>
+        <td>14246</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>E559TH-77</td>
+        <td>2025-04-08</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Toyota Prius</td>
+        <td>2018</td>
+        <td>251571</td>
+        <td>Свободен</td>
+        <td>Сидоров С.</td>
+        <td>4.9</td>
+        <td>11529</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>B194MB-77</td>
+        <td>2024-01-03</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Toyota Camry</td>
+        <td>2020</td>
+        <td>52780</td>
+        <td>На заказе</td>
+        <td>Михайлов И.</td>
+        <td>4.9</td>
+        <td>12903</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>B665HX-77</td>
+        <td>2024-09-25</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Toyota Camry</td>
+        <td>2019</td>
+        <td>66466</td>
+        <td>Свободен</td>
+        <td>Кузнецов П.</td>
+        <td>4.9</td>
+        <td>8128</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>B489HO-77</td>
+        <td>2024-10-12</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Toyota Camry</td>
+        <td>2018</td>
+        <td>224081</td>
+        <td>Свободен</td>
+        <td>Смирнов И.</td>
+        <td>4.5</td>
+        <td>6107</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>P846EC-77</td>
+        <td>2024-04-18</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Tesla Model 3</td>
+        <td>2020</td>
+        <td>145141</td>
+        <td>На заказе</td>
+        <td>Иванов С.</td>
+        <td>4.7</td>
+        <td>10836</td>
+        <td>Electric</td>
+        <td>Business</td>
+        <td>M374BE-77</td>
+        <td>2025-07-24</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>Ford Focus</td>
+        <td>2021</td>
+        <td>141477</td>
+        <td>На заказе</td>
+        <td>Попов М.</td>
+        <td>4.0</td>
+        <td>5075</td>
+        <td>Diesel</td>
+        <td>Standard</td>
+        <td>E862PP-77</td>
+        <td>2023-09-27</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>Ford Focus</td>
+        <td>2022</td>
+        <td>239400</td>
+        <td>Свободен</td>
+        <td>Сидоров А.</td>
+        <td>4.3</td>
+        <td>2043</td>
+        <td>Diesel</td>
+        <td>Standard</td>
+        <td>B256XC-77</td>
+        <td>2025-03-22</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>Tesla Model 3</td>
+        <td>2017</td>
+        <td>231728</td>
+        <td>Свободен</td>
+        <td>Соколов А.</td>
+        <td>4.1</td>
+        <td>876</td>
+        <td>Electric</td>
+        <td>Business</td>
+        <td>X838BX-77</td>
+        <td>2025-06-25</td>
+      </tr>
+      <tr>
+        <td>11</td>
+        <td>Renault Logan</td>
+        <td>2020</td>
+        <td>208349</td>
+        <td>Свободен</td>
+        <td>Попов Д.</td>
+        <td>4.3</td>
+        <td>9130</td>
+        <td>Petrol</td>
+        <td>Economy</td>
+        <td>P880CP-77</td>
+        <td>2025-07-23</td>
+      </tr>
+      <tr>
+        <td>12</td>
+        <td>Hyundai Ioniq</td>
+        <td>2020</td>
+        <td>296161</td>
+        <td>На заказе</td>
+        <td>Сидоров О.</td>
+        <td>4.6</td>
+        <td>17878</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>A713KO-77</td>
+        <td>2023-01-20</td>
+      </tr>
+      <tr>
+        <td>13</td>
+        <td>Hyundai Ioniq</td>
+        <td>2021</td>
+        <td>191225</td>
+        <td>Свободен</td>
+        <td>Кузнецов В.</td>
+        <td>4.8</td>
+        <td>3306</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>Y597BP-77</td>
+        <td>2025-02-23</td>
+      </tr>
+      <tr>
+        <td>14</td>
+        <td>Skoda Octavia</td>
+        <td>2018</td>
+        <td>279184</td>
+        <td>На обслуживании</td>
+        <td>Сидоров П.</td>
+        <td>4.4</td>
+        <td>14365</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>E652YY-77</td>
+        <td>2023-07-25</td>
+      </tr>
+      <tr>
+        <td>15</td>
+        <td>VW Passat</td>
+        <td>2022</td>
+        <td>225779</td>
+        <td>Свободен</td>
+        <td>Михайлов М.</td>
+        <td>3.9</td>
+        <td>7862</td>
+        <td>Diesel</td>
+        <td>Comfort</td>
+        <td>B446AT-77</td>
+        <td>2024-07-21</td>
+      </tr>
+      <tr>
+        <td>16</td>
+        <td>Kia Ceed</td>
+        <td>2019</td>
+        <td>33770</td>
+        <td>Свободен</td>
+        <td>Иванов С.</td>
+        <td>3.9</td>
+        <td>1529</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>K172PE-77</td>
+        <td>2023-10-13</td>
+      </tr>
+      <tr>
+        <td>17</td>
+        <td>Nissan Leaf</td>
+        <td>2019</td>
+        <td>312713</td>
+        <td>Свободен</td>
+        <td>Новиков В.</td>
+        <td>4.3</td>
+        <td>15998</td>
+        <td>Electric</td>
+        <td>Economy</td>
+        <td>M294BB-77</td>
+        <td>2024-11-05</td>
+      </tr>
+      <tr>
+        <td>18</td>
+        <td>Tesla Model 3</td>
+        <td>2021</td>
+        <td>252077</td>
+        <td>Свободен</td>
+        <td>Иванов И.</td>
+        <td>3.9</td>
+        <td>11618</td>
+        <td>Electric</td>
+        <td>Business</td>
+        <td>B354EE-77</td>
+        <td>2024-07-03</td>
+      </tr>
+      <tr>
+        <td>19</td>
+        <td>Nissan Leaf</td>
+        <td>2018</td>
+        <td>251187</td>
+        <td>Свободен</td>
+        <td>Соколов С.</td>
+        <td>4.8</td>
+        <td>2970</td>
+        <td>Electric</td>
+        <td>Economy</td>
+        <td>O927PB-77</td>
+        <td>2023-02-21</td>
+      </tr>
+      <tr>
+        <td>20</td>
+        <td>Renault Logan</td>
+        <td>2016</td>
+        <td>78896</td>
+        <td>На обслуживании</td>
+        <td>Кузнецов Д.</td>
+        <td>4.2</td>
+        <td>16273</td>
+        <td>Petrol</td>
+        <td>Economy</td>
+        <td>E985MA-77</td>
+        <td>2023-06-18</td>
+      </tr>
+      <tr>
+        <td>21</td>
+        <td>Tesla Model 3</td>
+        <td>2016</td>
+        <td>234693</td>
+        <td>Свободен</td>
+        <td>Соколов П.</td>
+        <td>4.3</td>
+        <td>16447</td>
+        <td>Electric</td>
+        <td>Business</td>
+        <td>C294HE-77</td>
+        <td>2025-09-18</td>
+      </tr>
+      <tr>
+        <td>22</td>
+        <td>Toyota Prius</td>
+        <td>2024</td>
+        <td>61959</td>
+        <td>На заказе</td>
+        <td>Иванов А.</td>
+        <td>4.4</td>
+        <td>16977</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>P261AP-77</td>
+        <td>2023-03-24</td>
+      </tr>
+      <tr>
+        <td>23</td>
+        <td>Skoda Octavia</td>
+        <td>2017</td>
+        <td>65631</td>
+        <td>На заказе</td>
+        <td>Кузнецов Е.</td>
+        <td>3.9</td>
+        <td>8567</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>T708AT-77</td>
+        <td>2023-03-25</td>
+      </tr>
+      <tr>
+        <td>24</td>
+        <td>Tesla Model 3</td>
+        <td>2024</td>
+        <td>195868</td>
+        <td>На обслуживании</td>
+        <td>Кузнецов О.</td>
+        <td>4.1</td>
+        <td>13469</td>
+        <td>Electric</td>
+        <td>Business</td>
+        <td>C787XH-77</td>
+        <td>2024-04-13</td>
+      </tr>
+      <tr>
+        <td>25</td>
+        <td>Toyota Camry</td>
+        <td>2017</td>
+        <td>34883</td>
+        <td>Свободен</td>
+        <td>Новиков И.</td>
+        <td>3.9</td>
+        <td>7484</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>P371CK-77</td>
+        <td>2025-06-21</td>
+      </tr>
+      <tr>
+        <td>26</td>
+        <td>Hyundai Ioniq</td>
+        <td>2019</td>
+        <td>223738</td>
+        <td>Свободен</td>
+        <td>Соколов А.</td>
+        <td>4.6</td>
+        <td>17832</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>A783PH-77</td>
+        <td>2025-08-12</td>
+      </tr>
+      <tr>
+        <td>27</td>
+        <td>Hyundai Ioniq</td>
+        <td>2018</td>
+        <td>168656</td>
+        <td>Свободен</td>
+        <td>Петров А.</td>
+        <td>4.0</td>
+        <td>9732</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>T315YK-77</td>
+        <td>2023-07-28</td>
+      </tr>
+      <tr>
+        <td>28</td>
+        <td>VW Passat</td>
+        <td>2024</td>
+        <td>286131</td>
+        <td>Свободен</td>
+        <td>Иванов И.</td>
+        <td>4.5</td>
+        <td>9566</td>
+        <td>Diesel</td>
+        <td>Comfort</td>
+        <td>A103KC-77</td>
+        <td>2024-10-14</td>
+      </tr>
+      <tr>
+        <td>29</td>
+        <td>VW Passat</td>
+        <td>2018</td>
+        <td>261649</td>
+        <td>На заказе</td>
+        <td>Попов А.</td>
+        <td>3.8</td>
+        <td>2965</td>
+        <td>Diesel</td>
+        <td>Comfort</td>
+        <td>Y252PA-77</td>
+        <td>2025-05-04</td>
+      </tr>
+      <tr>
+        <td>30</td>
+        <td>Toyota Camry</td>
+        <td>2024</td>
+        <td>107643</td>
+        <td>Свободен</td>
+        <td>Иванов П.</td>
+        <td>4.2</td>
+        <td>1807</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>K315XE-77</td>
+        <td>2024-11-13</td>
+      </tr>
+      <tr>
+        <td>31</td>
+        <td>Hyundai Ioniq</td>
+        <td>2021</td>
+        <td>243058</td>
+        <td>На обслуживании</td>
+        <td>Сидоров С.</td>
+        <td>4.8</td>
+        <td>6301</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>M125CY-77</td>
+        <td>2025-08-04</td>
+      </tr>
+      <tr>
+        <td>32</td>
+        <td>Toyota Camry</td>
+        <td>2022</td>
+        <td>160111</td>
+        <td>Свободен</td>
+        <td>Петров Е.</td>
+        <td>4.8</td>
+        <td>15923</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>E304OK-77</td>
+        <td>2023-11-09</td>
+      </tr>
+      <tr>
+        <td>33</td>
+        <td>Kia Ceed</td>
+        <td>2019</td>
+        <td>42406</td>
+        <td>На заказе</td>
+        <td>Попов О.</td>
+        <td>4.1</td>
+        <td>2774</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>H459XP-77</td>
+        <td>2024-02-14</td>
+      </tr>
+      <tr>
+        <td>34</td>
+        <td>Renault Logan</td>
+        <td>2021</td>
+        <td>44470</td>
+        <td>Свободен</td>
+        <td>Смирнов Д.</td>
+        <td>4.4</td>
+        <td>9198</td>
+        <td>Petrol</td>
+        <td>Economy</td>
+        <td>A211TM-77</td>
+        <td>2023-12-20</td>
+      </tr>
+      <tr>
+        <td>35</td>
+        <td>Toyota Camry</td>
+        <td>2022</td>
+        <td>298132</td>
+        <td>Свободен</td>
+        <td>Новиков С.</td>
+        <td>4.1</td>
+        <td>14788</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>A632PX-77</td>
+        <td>2025-01-06</td>
+      </tr>
+      <tr>
+        <td>36</td>
+        <td>Kia Ceed</td>
+        <td>2021</td>
+        <td>256124</td>
+        <td>Свободен</td>
+        <td>Васильев В.</td>
+        <td>4.1</td>
+        <td>4583</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>Y407PH-77</td>
+        <td>2024-11-13</td>
+      </tr>
+      <tr>
+        <td>37</td>
+        <td>Tesla Model 3</td>
+        <td>2021</td>
+        <td>240973</td>
+        <td>На заказе</td>
+        <td>Михайлов Д.</td>
+        <td>4.0</td>
+        <td>12923</td>
+        <td>Electric</td>
+        <td>Business</td>
+        <td>X866CT-77</td>
+        <td>2024-08-05</td>
+      </tr>
+      <tr>
+        <td>38</td>
+        <td>VW Passat</td>
+        <td>2022</td>
+        <td>317276</td>
+        <td>На заказе</td>
+        <td>Смирнов П.</td>
+        <td>4.0</td>
+        <td>11059</td>
+        <td>Diesel</td>
+        <td>Comfort</td>
+        <td>O552OX-77</td>
+        <td>2023-08-07</td>
+      </tr>
+      <tr>
+        <td>39</td>
+        <td>Renault Logan</td>
+        <td>2023</td>
+        <td>118967</td>
+        <td>На заказе</td>
+        <td>Смирнов А.</td>
+        <td>4.5</td>
+        <td>11483</td>
+        <td>Petrol</td>
+        <td>Economy</td>
+        <td>B938EX-77</td>
+        <td>2023-11-14</td>
+      </tr>
+      <tr>
+        <td>40</td>
+        <td>Kia Ceed</td>
+        <td>2019</td>
+        <td>107255</td>
+        <td>Свободен</td>
+        <td>Кузнецов М.</td>
+        <td>4.5</td>
+        <td>2886</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>O524XT-77</td>
+        <td>2023-07-19</td>
+      </tr>
+      <tr>
+        <td>41</td>
+        <td>Tesla Model 3</td>
+        <td>2023</td>
+        <td>239533</td>
+        <td>Свободен</td>
+        <td>Иванов И.</td>
+        <td>4.7</td>
+        <td>7670</td>
+        <td>Electric</td>
+        <td>Business</td>
+        <td>C923YP-77</td>
+        <td>2024-04-20</td>
+      </tr>
+      <tr>
+        <td>42</td>
+        <td>Toyota Prius</td>
+        <td>2024</td>
+        <td>160651</td>
+        <td>На обслуживании</td>
+        <td>Петров М.</td>
+        <td>3.9</td>
+        <td>15725</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>X643PT-77</td>
+        <td>2023-11-21</td>
+      </tr>
+      <tr>
+        <td>43</td>
+        <td>Nissan Leaf</td>
+        <td>2024</td>
+        <td>253735</td>
+        <td>На заказе</td>
+        <td>Михайлов М.</td>
+        <td>4.8</td>
+        <td>16054</td>
+        <td>Electric</td>
+        <td>Economy</td>
+        <td>O365EX-77</td>
+        <td>2023-10-11</td>
+      </tr>
+      <tr>
+        <td>44</td>
+        <td>Renault Logan</td>
+        <td>2023</td>
+        <td>155433</td>
+        <td>Свободен</td>
+        <td>Петров П.</td>
+        <td>4.1</td>
+        <td>11505</td>
+        <td>Petrol</td>
+        <td>Economy</td>
+        <td>K653BC-77</td>
+        <td>2023-06-04</td>
+      </tr>
+      <tr>
+        <td>45</td>
+        <td>Kia Ceed</td>
+        <td>2022</td>
+        <td>110113</td>
+        <td>На заказе</td>
+        <td>Петров Е.</td>
+        <td>4.2</td>
+        <td>15767</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>M163EM-77</td>
+        <td>2024-02-03</td>
+      </tr>
+      <tr>
+        <td>46</td>
+        <td>Ford Focus</td>
+        <td>2016</td>
+        <td>229429</td>
+        <td>Свободен</td>
+        <td>Васильев П.</td>
+        <td>4.6</td>
+        <td>14230</td>
+        <td>Diesel</td>
+        <td>Standard</td>
+        <td>P865YP-77</td>
+        <td>2025-03-30</td>
+      </tr>
+      <tr>
+        <td>47</td>
+        <td>Ford Focus</td>
+        <td>2019</td>
+        <td>285972</td>
+        <td>Свободен</td>
+        <td>Попов М.</td>
+        <td>3.8</td>
+        <td>11514</td>
+        <td>Diesel</td>
+        <td>Standard</td>
+        <td>X795MY-77</td>
+        <td>2023-06-19</td>
+      </tr>
+      <tr>
+        <td>48</td>
+        <td>Nissan Leaf</td>
+        <td>2018</td>
+        <td>310034</td>
+        <td>Свободен</td>
+        <td>Попов В.</td>
+        <td>4.4</td>
+        <td>1388</td>
+        <td>Electric</td>
+        <td>Economy</td>
+        <td>B758MC-77</td>
+        <td>2025-06-06</td>
+      </tr>
+      <tr>
+        <td>49</td>
+        <td>Nissan Leaf</td>
+        <td>2018</td>
+        <td>56363</td>
+        <td>Свободен</td>
+        <td>Васильев С.</td>
+        <td>4.3</td>
+        <td>11559</td>
+        <td>Electric</td>
+        <td>Economy</td>
+        <td>M384MH-77</td>
+        <td>2025-05-04</td>
+      </tr>
+      <tr>
+        <td>50</td>
+        <td>Hyundai Ioniq</td>
+        <td>2023</td>
+        <td>40162</td>
+        <td>На заказе</td>
+        <td>Иванов О.</td>
+        <td>4.0</td>
+        <td>2748</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>X141AE-77</td>
+        <td>2023-07-24</td>
+      </tr>
+      <tr>
+        <td>51</td>
+        <td>Toyota Prius</td>
+        <td>2018</td>
+        <td>155066</td>
+        <td>Свободен</td>
+        <td>Петров В.</td>
+        <td>4.8</td>
+        <td>15738</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>Y362KC-77</td>
+        <td>2024-09-12</td>
+      </tr>
+      <tr>
+        <td>52</td>
+        <td>Ford Focus</td>
+        <td>2017</td>
+        <td>115860</td>
+        <td>На обслуживании</td>
+        <td>Петров В.</td>
+        <td>3.8</td>
+        <td>10722</td>
+        <td>Diesel</td>
+        <td>Standard</td>
+        <td>T793MM-77</td>
+        <td>2025-08-22</td>
+      </tr>
+      <tr>
+        <td>53</td>
+        <td>Kia Ceed</td>
+        <td>2017</td>
+        <td>157323</td>
+        <td>Свободен</td>
+        <td>Смирнов В.</td>
+        <td>4.7</td>
+        <td>1845</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>K645MX-77</td>
+        <td>2024-01-15</td>
+      </tr>
+      <tr>
+        <td>54</td>
+        <td>Hyundai Ioniq</td>
+        <td>2024</td>
+        <td>208903</td>
+        <td>Свободен</td>
+        <td>Попов М.</td>
+        <td>3.9</td>
+        <td>12368</td>
+        <td>Hybrid</td>
+        <td>Economy</td>
+        <td>X948OY-77</td>
+        <td>2023-06-06</td>
+      </tr>
+      <tr>
+        <td>55</td>
+        <td>Tesla Model 3</td>
+        <td>2018</td>
+        <td>303545</td>
+        <td>На обслуживании</td>
+        <td>Смирнов В.</td>
+        <td>4.7</td>
+        <td>16343</td>
+        <td>Electric</td>
+        <td>Business</td>
+        <td>O546YT-77</td>
+        <td>2023-10-02</td>
+      </tr>
+      <tr>
+        <td>56</td>
+        <td>Toyota Camry</td>
+        <td>2019</td>
+        <td>75436</td>
+        <td>Свободен</td>
+        <td>Соколов С.</td>
+        <td>4.6</td>
+        <td>12918</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>K129OK-77</td>
+        <td>2023-07-06</td>
+      </tr>
+      <tr>
+        <td>57</td>
+        <td>Nissan Leaf</td>
+        <td>2019</td>
+        <td>216030</td>
+        <td>На заказе</td>
+        <td>Васильев П.</td>
+        <td>4.8</td>
+        <td>9552</td>
+        <td>Electric</td>
+        <td>Economy</td>
+        <td>P110PE-77</td>
+        <td>2023-03-29</td>
+      </tr>
+      <tr>
+        <td>58</td>
+        <td>Kia Ceed</td>
+        <td>2022</td>
+        <td>286155</td>
+        <td>На заказе</td>
+        <td>Кузнецов М.</td>
+        <td>4.5</td>
+        <td>16583</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>O911AB-77</td>
+        <td>2023-10-29</td>
+      </tr>
+      <tr>
+        <td>59</td>
+        <td>Kia Ceed</td>
+        <td>2022</td>
+        <td>157561</td>
+        <td>Свободен</td>
+        <td>Новиков О.</td>
+        <td>4.3</td>
+        <td>17897</td>
+        <td>Petrol</td>
+        <td>Standard</td>
+        <td>K535YP-77</td>
+        <td>2023-12-05</td>
+      </tr>
+      <tr>
+        <td>60</td>
+        <td>Toyota Camry</td>
+        <td>2023</td>
+        <td>172038</td>
+        <td>Свободен</td>
+        <td>Кузнецов И.</td>
+        <td>4.6</td>
+        <td>10839</td>
+        <td>Petrol</td>
+        <td>Comfort</td>
+        <td>B860PY-77</td>
+        <td>2023-07-09</td>
+      </tr>
+      </tbody>
+      <caption align="bottom">Источник: внутренний реестр таксопарка</caption>
+    </table>
+  </section>
+
+  <p><a href="index.html">Вернуться на главную</a></p>
+
+  
+<footer style="background-color:#f0f0f0" align="center">
+  <p>&copy; 2025 Таксопарк "Быстрый". <strong>Б9123-09.03.04/4 Дмитриенко В.Ю.</strong></p>
+  <p><a href="#top">Наверх</a></p>
+</footer>
+
+</body>
+</html>
