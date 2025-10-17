@@ -23,75 +23,214 @@
 
   <section>
     <h2>Настройки отображения</h2>
-    <form action="data.html" method="get">
+    <form action="data.html" method="get" id="controls">
+  
       <fieldset>
-        <legend>Сортировка</legend>
-        <label for="sort">Поле:</label>
-        <select name="sort" id="sort">
-          <option value="id">ID</option>
-          <option value="model">Модель</option>
-          <option value="year">Год</option>
-          <option value="mileage">Пробег</option>
-          <option value="rating">Рейтинг</option>
-          <option value="trips">Поездки</option>
-        </select>
-        <label><input type="radio" name="order" value="asc" checked> По возрастанию</label>
-        <label><input type="radio" name="order" value="desc"> По убыванию</label>
-        <input type="submit" value="Применить">
+        <legend>Сортировка (трёхуровневая)</legend>
+  
+        <div>
+          <label for="sort1">Поле 1:</label>
+          <select name="sort1" id="sort1">
+            <option value="">— не выбрано —</option>
+            <option value="id">ID</option>
+            <option value="model">Модель</option>
+            <option value="year">Год</option>
+            <option value="mileage">Пробег</option>
+            <option value="status">Статус</option>
+            <option value="driver">Водитель</option>
+            <option value="rating">Рейтинг</option>
+            <option value="trips">Поездки</option>
+            <option value="fuel">Топливо</option>
+            <option value="class">Класс</option>
+            <option value="plate">Номер</option>
+            <option value="service_date">Последнее ТО</option>
+          </select>
+          <label>
+            <input type="radio" name="order1" value="asc" checked> ↑ по возрастанию
+          </label>
+          <label>
+            <input type="radio" name="order1" value="desc"> ↓ по убыванию
+          </label>
+        </div>
+  
+        <div>
+          <label for="sort2">Поле 2:</label>
+          <select name="sort2" id="sort2">
+            <option value="">— не выбрано —</option>
+            <option value="id">ID</option>
+            <option value="model">Модель</option>
+            <option value="year">Год</option>
+            <option value="mileage">Пробег</option>
+            <option value="status">Статус</option>
+            <option value="driver">Водитель</option>
+            <option value="rating">Рейтинг</option>
+            <option value="trips">Поездки</option>
+            <option value="fuel">Топливо</option>
+            <option value="class">Класс</option>
+            <option value="plate">Номер</option>
+            <option value="service_date">Последнее ТО</option>
+          </select>
+          <label>
+            <input type="radio" name="order2" value="asc" checked> ↑ по возрастанию
+          </label>
+          <label>
+            <input type="radio" name="order2" value="desc"> ↓ по убыванию
+          </label>
+        </div>
+  
+        <div>
+          <label for="sort3">Поле 3:</label>
+          <select name="sort3" id="sort3">
+            <option value="">— не выбрано —</option>
+            <option value="id">ID</option>
+            <option value="model">Модель</option>
+            <option value="year">Год</option>
+            <option value="mileage">Пробег</option>
+            <option value="status">Статус</option>
+            <option value="driver">Водитель</option>
+            <option value="rating">Рейтинг</option>
+            <option value="trips">Поездки</option>
+            <option value="fuel">Топливо</option>
+            <option value="class">Класс</option>
+            <option value="plate">Номер</option>
+            <option value="service_date">Последнее ТО</option>
+          </select>
+          <label>
+            <input type="radio" name="order3" value="asc" checked> ↑ по возрастанию
+          </label>
+          <label>
+            <input type="radio" name="order3" value="desc"> ↓ по убыванию
+          </label>
+        </div>
+        <input type="submit" value="Применить сортировку">
       </fieldset>
-
+  
       <fieldset>
-        <legend>Фильтры</legend>
-        <label for="status">Статус:</label>
-        <select name="status" id="status">
-          <option value="">Любой</option>
-          <option>Свободен</option>
-          <option>На заказе</option>
-          <option>На обслуживании</option>
-        </select>
+        <legend>Фильтры (все поля таблицы)</legend>
+  
+        <div>
+          <label for="id_min">ID от:</label>
+          <input type="number" id="id_min" name="id_min" min="1" step="1">
+          <label for="id_max">до:</label>
+          <input type="number" id="id_max" name="id_max" min="1" step="1">
+        </div>
+  
+        <div>
+          <label for="model_contains">Модель содержит:</label>
+          <input type="text" id="model_contains" name="model_contains" placeholder="например, Toyota">
+        </div>
+  
+        <div>
+          <label for="year_min">Год от:</label>
+          <input type="number" id="year_min" name="year_min" min="2010" max="2025" step="1">
+          <label for="year_max">до:</label>
+          <input type="number" id="year_max" name="year_max" min="2010" max="2025" step="1">
+        </div>
+  
+        <div>
+          <label for="mileage_min">Пробег от, км:</label>
+          <input type="number" id="mileage_min" name="mileage_min" min="0" step="1">
+          <label for="mileage_max">до:</label>
+          <input type="number" id="mileage_max" name="mileage_max" min="0" step="1">
+        </div>
+  
+        <div>
+          <label for="status">Статус:</label>
+          <select name="status" id="status">
+            <option value="">Любой</option>
+            <option value="Свободен">Свободен</option>
+            <option value="На заказе">На заказе</option>
+            <option value="На обслуживании">На обслуживании</option>
+          </select>
+        </div>
+  
+        <div>
+          <label for="driver_contains">Водитель содержит:</label>
+          <input type="text" id="driver_contains" name="driver_contains" placeholder="например, Иванов">
+        </div>
+  
+        <div>
+          <label for="rating_min">Рейтинг от:</label>
+          <input type="number" id="rating_min" name="rating_min" min="0" max="5" step="0.1">
+          <label for="rating_max">до:</label>
+          <input type="number" id="rating_max" name="rating_max" min="0" max="5" step="0.1">
+        </div>
+  
+        <div>
+          <label for="trips_min">Поездки от:</label>
+          <input type="number" id="trips_min" name="trips_min" min="0" step="1">
+          <label for="trips_max">до:</label>
+          <input type="number" id="trips_max" name="trips_max" min="0" step="1">
+        </div>
+  
+        <div>
+          <label for="fuel">Тип топлива:</label>
+          <select id="fuel" name="fuel">
+            <option value="">Любой</option>
+            <option value="Petrol">Petrol</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Hybrid">Hybrid</option>
+            <option value="Electric">Electric</option>
+          </select>
+        </div>
 
-        <label for="year_min">Год от:</label>
-        <input type="number" id="year_min" name="year_min" min="2010" max="2025" value="2016">
-        <label for="year_max">до:</label>
-        <input type="number" id="year_max" name="year_max" min="2010" max="2025" value="2024">
-
-        <label for="model">Модель содержит:</label>
-        <input type="text" id="model" name="model" placeholder="например, Toyota">
-
-        <details>
-          <summary>Дополнительные параметры</summary>
-          <label><input type="checkbox" name="only_electric"> Только электромобили</label>
-          <label for="rating_min">Рейтинг минимум:</label>
-          <input type="number" id="rating_min" name="rating_min" min="0" max="5" step="0.1" value="4.0">
-        </details>
-
+        <div>
+          <label for="class">Класс:</label>
+          <select id="class" name="class">
+            <option value="">Любой</option>
+            <option value="Economy">Economy</option>
+            <option value="Standard">Standard</option>
+            <option value="Comfort">Comfort</option>
+            <option value="Business">Business</option>
+          </select>
+        </div>
+  
+        <div>
+          <label for="plate_contains">Номер содержит:</label>
+          <input type="text" id="plate_contains" name="plate_contains" placeholder="например, B860">
+        </div>
+  
+        <div>
+          <label for="service_from">Последнее ТО с:</label>
+          <input type="date" id="service_from" name="service_from">
+          <label for="service_to">по:</label>
+          <input type="date" id="service_to" name="service_to">
+        </div>
+  
         <input type="submit" value="Отфильтровать">
         <input type="reset" value="Сбросить">
       </fieldset>
-
+  
       <fieldset>
-        <legend>Настройки графика</legend>
+        <legend>Настройки графика (числовые оси)</legend>
+  
         <label for="x">Ось X:</label>
-        <select name="x" id="x">
-          <option value="year">Год</option>
-          <option value="mileage">Пробег</option>
-          <option value="trips">Поездки</option>
-        </select>
-        <label for="y">Ось Y:</label>
-        <select name="y" id="y">
-          <option value="rating">Рейтинг</option>
-          <option value="trips">Поездки</option>
-        </select>
-        <label for="group">Группировка:</label>
-        <select id="group" name="group">
-          <option value="fuel">Тип топлива</option>
-          <option value="class">Класс</option>
-          <option value="status">Статус</option>
-        </select>
+<select name="x" id="x">
+  <option value="model">Модель</option>
+  <option value="status">Статус</option>
+  <option value="driver">Водитель</option>
+  <option value="plate">Номер</option>
+  <option value="fuel">Тип топлива</option>
+  <option value="class">Класс</option>
+</select>
+
+<label>Ось Y (можно несколько):</label>
+<div id="y-options">
+  <label><input type="checkbox" name="y[]" value="id"> ID</label><br>
+  <label><input type="checkbox" name="y[]" value="year"> Год</label><br>
+  <label><input type="checkbox" name="y[]" value="mileage"> Пробег</label><br>
+  <label><input type="checkbox" name="y[]" value="rating"> Рейтинг</label><br>
+  <label><input type="checkbox" name="y[]" value="trips"> Поездки</label><br>
+  <label><input type="checkbox" name="y[]" value="last_service"> Последнее ТО</label>
+</div>
+
+
         <input type="submit" value="Построить">
       </fieldset>
+  
     </form>
   </section>
+  
 
   <section>
     <h2>Таблица автопарка (60 строк)</h2>
